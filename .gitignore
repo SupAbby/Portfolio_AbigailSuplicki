@@ -1,10 +1,26 @@
-# Videos
+# Videos: ignore all of them by default...
 *.mp4
 *.MP4
 *.mov
 *.MOV
 *.webm
 *.avi
+
+# ...except the compressed ones the site actually plays
+!Video/DemoReel.mp4
+!images/DIDimages/Digitalid.mp4
+!images/nissha/Defibvideo.mp4
+!images/koike/Fabtech Recap 2025.mp4
+!images/koike/Fibertex_Display.mp4
+!images/koike/FinalPackagingConcept.MP4
+!images/koike/PackingConcept3DModel.MP4
+!images/koike/Shoppro_Configurator.mp4
+!images/koike/Mobileconfigurator.mp4
+
+# Premiere Pro project and auto-save files
+*.prproj
+*.prin
+Video/Adobe Premiere Pro Auto-Save/
 
 # Large archives
 *.zip
