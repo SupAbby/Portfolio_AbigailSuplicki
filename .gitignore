@@ -7,7 +7,7 @@
 *.avi
 
 # ...except the compressed ones the site actually plays
-!Video/DemoReel.mp4
+!Video/DemoReelVersion2.mp4
 !images/DIDimages/Digitalid.mp4
 !images/nissha/Defibvideo.mp4
 !images/koike/Fabtech Recap 2025.mp4
