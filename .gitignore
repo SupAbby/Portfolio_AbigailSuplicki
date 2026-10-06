@@ -1,0 +1,16 @@
+# Videos
+*.mp4
+*.MP4
+*.mov
+*.MOV
+*.webm
+*.avi
+
+# Large archives
+*.zip
+*.rar
+*.7z
+
+# OS files
+.DS_Store
+Thumbs.db

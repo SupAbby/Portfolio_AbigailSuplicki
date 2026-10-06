@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ABIGAIL SUPLICKI // BRUTALIST_UI_ARCHIVE</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- BACKGROUND CANVAS -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- NAVIGATION BAR -->
+  <nav>
+    <div class="nav-brand">ABIGAIL SUPLICKI // UI_UX</div>
+    <div class="nav-links">
+      <a href="#work">[ PROJECTS ]</a>
+      <a href="aboutme.html">[ ABOUT ME ]</a>
+      <a href="files/SuplickiAbigail_Resume-Current.pdf" download="SuplickiAbigail_Resume-Current">[ RESUME ]</a>
+      <a href="mailto:suplickiabby@gmail.com" class="btn-brutal-primary">LET'S TALK</a>
+    </div>
+  </nav>
+
+  <!-- 1. SCROLL TRACK & HERO STAGE -->
+  <div class="intro-scroll-track" id="scrollTrack">
+    <div class="hero-sticky-stage">
+      
+      <!-- INTRO OVERLAY TEXT -->
+      <div class="intro-title-overlay" id="introTitle">
+        <p style="color: #000000; font-size: 0.9rem; letter-spacing: 3px; margin-bottom: 10px; font-weight: bold;">// PORTFOLIO_SHOWCASE_2026</p>
+        <h1 class="intro-brand-title">ABIGAIL SUPLICKI</h1>
+        <button type="button" class="scroll-indicator" id="scrollBtn" aria-label="Scroll down to the about section">▼ SCROLL TO EXPLORE ▼</button>
+      </div>
+
+      <!-- VIDEO + SPOTLIGHT LENS (grey layer and stripes are CSS, see styles.css) -->
+      <div class="hero-video-wrapper" id="videoBox">
+        <video class="hero-video" id="heroVideo" autoplay loop muted playsinline preload="auto">
+          <source src="video/DemoReel.mp4" type="video/mp4">
+        </video>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 2. MAIN APP CONTENT -->
+  <div class="app-container" id="mainLayout">
+    
+    <div class="hud-meta-bar">
+      <span>SYS_LOC: RIT // NEW_MEDIA_DESIGN</span>
+      <span>STATUS: ACTIVE_JOB_SEARCH</span>
+      <span>TERM: SUMMER_2027</span>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section class="hero-section" id="about">
+      <span class="corner-mark top-left">+ SEC_01 // HERO</span>
+      <span class="corner-mark bottom-right">RIT_DESIGN_DEPT +</span>
+
+      <div class="hero-content">
+        <div class="brutalist-badge">
+          <span style="color: #000000;">●</span> OPEN TO SUMMER 2027 FULL TIME
+        </div>
+
+        <p class="hero-subtitle">// SYSTEM_USER: ABIGAIL SUPLICKI</p>
+        <h1 class="hero-title">VISUAL & UI/UX DESIGNER</h1>
+
+        <p class="hero-bio">
+          Driven New Media Design student at Rochester Institute of Technology seeking a career to apply and grow skills in UI systems, graphic design, prototyping, 3D Modeling, and interactive media.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#work" class="btn-brutal-primary">EXPLORE ARCHIVE ➔</a>
+          <a href="files/SuplickiAbigail_Resume-Current.pdf" download="SuplickiAbigail_Resume-Current" class="btn-brutal-secondary">DOWNLOAD RESUME [PDF]</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- METRICS BAR -->
+    <div class="metrics-bar">
+      <div class="metric-card">
+        <div class="metric-value">2027</div>
+        <div class="metric-label">TARGET FULL TIME</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">03+</div>
+        <div class="metric-label">FEATURED CASE STUDIES</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">RIT</div>
+        <div class="metric-label">NEW MEDIA DESIGN</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">3.64</div>
+        <div class="metric-label">GPA</div>
+      </div>
+    </div>
+
+    <!-- SECTION HEADER -->
+    <div class="section-header" id="work">
+      <h2 class="section-title">// FEATURED_WORK</h2>
+      <div class="brutalist-badge">INDEX [01-03]</div>
+    </div>
+
+    <!-- PROJECTS STACK -->
+    <div class="projects-stack">
+      <div class="koike-shadow-wrap">
+        <article class="project-row project-koike">
+          <div class="photo-media">
+            <img src="images/KoikeGasPamphlet.png" alt="Koike Aronson Wel-Handy Multi Next brochure spread">
+            <img class="photo-logo" src="images/KoikeLogo.png" alt="Koike Aronson Ransome logo">
+          </div>
+          <span class="koike-fill" aria-hidden="true"></span>
+          <div class="koike-accent" aria-hidden="true">
+            <span class="koike-white-left"></span>
+            <span class="koike-red-solid"></span>
+            <span class="koike-red-gradient"></span>
+            <span class="koike-white-right"></span>
+          </div>
+          <div class="project-info">
+            <span class="project-category">SYS // MARKETING INTERNSHIP</span>
+            <h3 class="project-title">KOIKE ARONSON INC.</h3>
+            <p class="project-desc">Designed brand-consistent promotional materials, event displays, packaging concepts, and collateral for industrial welding and heavy machinery manufacturing.</p>
+            <div class="tag-group">
+              <span class="tag-pill">BRANDING</span>
+              <span class="tag-pill">UI DESIGN</span>
+              <span class="tag-pill">GRAPHIC DESIGN</span>
+            </div>
+            <a href="koikecasestudy.html" class="btn-brutal-primary" style="margin-top: 10px; width: fit-content;">INSPECT CASE STUDY ➔</a>
+          </div>
+        </article>
+      </div>
+
+      <!-- PROJECT 2: DIGITAL ID -->
+      <article class="project-row project-showcase">
+        <div class="project-info">
+          <span class="project-category">SYS // APP DESIGN</span>
+          <h3 class="project-title">DIGITAL ID</h3>
+          <p class="project-desc">A concept design for a digital identification app for the state of Maine.</p>
+          <div class="tag-group">
+            <span class="tag-pill">UI/UX DESIGN</span>
+            <span class="tag-pill">PROTOTYPING</span>
+            <span class="tag-pill">FIGMA</span>
+            <span class="tag-pill">ILLUSTRATOR</span>
+          </div>
+          <a href="digitalidcasestudy.html" class="btn-brutal-primary" style="margin-top: 10px; width: fit-content;">INSPECT CASE STUDY ➔</a>
+        </div>
+
+        <div class="phone-stack">
+          <!-- Landscape backdrop: mountain ridge + two tree clusters, behind the phones -->
+          <img class="did-trees did-trees-right" src="images/DIDTrees2.png" alt="" aria-hidden="true">
+          <img class="did-trees did-trees-back" src="images/DIDTrees.png" alt="" aria-hidden="true">
+          <img class="did-trees did-trees-front" src="images/DIDTrees2.png" alt="" aria-hidden="true">
+          <img class="did-landscape" src="images/DIDBackground2.png" alt="" aria-hidden="true">
+
+          <img class="phone-left" src="images/DIDThumbLeft.png" alt="Maine ID welcome and login screen">
+          <img class="phone-right" src="images/DIDThumbRight.png" alt="Maine ID full driver's license screen">
+          <img class="phone-middle" src="images/DIDThumbMiddle.png" alt="Maine ID age verification screen">
+        </div>
+      </article>
+
+      <!-- PROJECT 3: NISSHA MEDICAL TECHNOLOGIES -->
+      <div class="koike-shadow-wrap">
+      <article class="project-row project-nissha">
+        <div class="photo-media">
+          <img src="images/NisshaPads.png" alt="Defibrillation electrode pads in front of a patient monitor">
+        </div>
+        <div class="project-info">
+          <span class="project-category">SYS // GRAPHIC DESIGN INTERNSHIP</span>
+          <h3 class="project-title">NISSHA MEDICAL TECHNOLOGIES</h3>
+          <p class="project-desc">Assist the marketing team with creating graphics for internal and external communication. Using film, photography, animation, motion graphics and editing skills to execute product marketing strategies. Create brand-consistent visuals and participate in cross-departmental communications.</p>
+          <div class="tag-group">
+            <span class="tag-pill">GRAPHIC DESIGN</span>
+            <span class="tag-pill">BRANDING</span>
+            <span class="tag-pill">ILLUSTRATOR</span>
+            <span class="tag-pill">VIDEO EDITING</span>
+          </div>
+          <a href="nisshacasestudy.html" class="btn-brutal-primary" style="margin-top: 10px; width: fit-content;">INSPECT CASE STUDY ➔</a>
+        </div>
+      </article>
+      </div>
+
+    </div>
+
+    <!-- CONTACT SECTION -->
+    <section class="contact-grid" id="contact">
+      <div>
+        <div class="brutalist-badge" style="margin-bottom: 15px;">✦ OPEN_TO_WORK</div>
+        <h2 class="hero-title" style="font-size: 3rem; margin-bottom: 15px;">LET'S CREATE SOMETHING AMAZING TOGETHER</h2>
+        <p class="hero-bio" style="margin-bottom: 20px;">
+          Currently seeking Summer 2027 full time roles in UI/UX, product design, graphic design and digital design.
+        </p>
+        <div class="tag-group">
+          <span class="tag-pill">EAST CONCORD, NY</span>
+          <span class="tag-pill">RIT CLASS OF 2027</span>
+          <span class="tag-pill">NEW MEDIA DESIGN</span>
+          <span class="tag-pill">3.64 GPA</span>
+        </div>
+      </div>
+
+      <div class="contact-card">
+        <p style="font-weight: 900; color: #FFFFFF; background: #000000; padding: 6px 12px; font-size: 0.8rem;">[ TRANSMISSION_CHANNEL ]</p>
+        <a href="mailto:suplickiabby@gmail.com" class="contact-item">
+          <span>[✉] suplickiabby@gmail.com</span>
+          <span>➔</span>
+        </a>
+        <a href="tel:7162206374" class="contact-item">
+          <span>[✆] (716) 220-6374</span>
+          <span>➔</span>
+        </a>
+        <a href="https://www.linkedin.com/in/abigail-suplicki-6648b1351/" class="contact-item">
+          <span class="contact-label"><span class="channel-icon">[in]</span> LINKEDIN_PROFILE</span>
+          <span>➔</span>
+        </a>
+        <a href="files/SuplickiAbigail_Resume-Current.pdf" download="SuplickiAbigail_Resume-Current" class="contact-item">
+          <span class="contact-label"><span class="channel-icon">[✦]</span> RESUME_DOWNLOAD</span>
+          <span>➔</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- FOOTER TICKER -->
+    <footer>
+      <div class="ticker">
+        /// ABIGAIL SUPLICKI /// UI/UX DESIGNER /// RIT NEW MEDIA DESIGN CLASS OF 2027 /// AVAILABLE FOR SUMMER 2027 FULL TIME /// EAST CONCORD - ROCHESTER NY /// TRANSMISSION ENDS ///
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- INTERACTION SCRIPTS -->
+  <script src="js/hover.js"></script>
+
+  <script>
+    /* CANVAS BACKGROUND & SCROLL ANIMATIONS */
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      drawGrid();
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    function drawGrid() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.lineWidth = 1.2;
+      const horizon = canvas.height * 0.35;
+      const step = 45;
+
+      ctx.strokeStyle = 'rgba(0, 0, 0, 0.08)';
+      for (let x = -canvas.width; x < canvas.width * 2; x += step * 2) {
+        ctx.beginPath();
+        ctx.moveTo(x, canvas.height);
+        ctx.lineTo(canvas.width / 2, horizon);
+        ctx.stroke();
+      }
+
+      ctx.strokeStyle = 'rgba(0, 0, 0, 0.12)';
+      for (let y = horizon; y < canvas.height; y += step) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(canvas.width, y);
+        ctx.stroke();
+      }
+
+    }
+    drawGrid();
+
+    const scrollTrack = document.getElementById('scrollTrack');
+    const introTitle = document.getElementById('introTitle');
+    const videoBox = document.getElementById('videoBox');
+    const mainLayout = document.getElementById('mainLayout');
+
+    const heroVideo = document.getElementById('heroVideo');
+    const scrollBtn = document.getElementById('scrollBtn');
+    const aboutSection = document.getElementById('about');
+    let heroPlaying = true;
+    let targetProgress = 0, currentProgress = 0;
+
+    function easeInOutCubic(t) {
+      return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    }
+
+    function updateScrollProgress() {
+      const scrollY = window.scrollY;
+      const maxScroll = scrollTrack.offsetHeight - window.innerHeight;
+      targetProgress = Math.min(Math.max(scrollY / maxScroll, 0), 1);
+    }
+
+    function animate() {
+      currentProgress += (targetProgress - currentProgress) * 0.08;
+      const eased = easeInOutCubic(currentProgress);
+
+      const showHero = eased < 0.9;
+      if (showHero !== heroPlaying) {
+        heroPlaying = showHero;
+        if (showHero) heroVideo.play().catch(() => {}); else heroVideo.pause();
+      }
+
+      introTitle.style.opacity = Math.max(1 - eased * 2.5, 0);
+
+      // The overlay is mostly faded out once you scroll; keep the button from catching clicks then
+      const btnLive = eased < 0.3;
+      scrollBtn.style.pointerEvents = btnLive ? 'auto' : 'none';
+      scrollBtn.tabIndex = btnLive ? 0 : -1;
+      introTitle.style.transform = `translate3d(0, ${-eased * 100}px, 0) scale(${1 - eased * 0.1})`;
+
+      videoBox.style.opacity = Math.max(1 - eased * 1.2, 0);
+
+      const layoutTranslate = (1 - eased) * 80;
+      mainLayout.style.opacity = eased > 0.15 ? Math.min((eased - 0.15) / 0.7, 1) : 0;
+      mainLayout.style.transform = `translate3d(0, ${layoutTranslate}px, 0)`;
+
+      if (eased > 0.4) {
+        mainLayout.classList.add('active');
+      } else {
+        mainLayout.classList.remove('active');
+      }
+
+      requestAnimationFrame(animate);
+    }
+
+    // SCROLL-TO-EXPLORE BUTTON: jump down to the hero (#about) section
+    scrollBtn.addEventListener('click', () => {
+      const navH = document.querySelector('nav').offsetHeight;
+      // offsetTop ignores the fade-in transform on #mainLayout, so the target is stable
+      const top = mainLayout.offsetTop + aboutSection.offsetTop - navH - 20;
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({ top, behavior: reduceMotion ? 'auto' : 'smooth' });
+    });
+
+    window.addEventListener('scroll', updateScrollProgress, { passive: true });
+    window.addEventListener('resize', updateScrollProgress);
+    updateScrollProgress();
+    requestAnimationFrame(animate);
+  </script>
+</body>
+</html>

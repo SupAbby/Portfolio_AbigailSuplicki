@@ -1,0 +1,1482 @@
+/* ==================================================
+   RAW BRUTALIST DESIGN SYSTEM
+================================================== */
+:root {
+  --bg-dark: #FFFFFF;
+  --primary: #000000;
+  --primary-dim: rgba(0, 0, 0, 0.05);
+  --gradient-accent: linear-gradient(135deg, #000000 0%, #222222 100%);
+  
+  --border-thick: 3px solid #000000;
+  --border-heavy: 4px solid #000000;
+  --border-thin: 1px solid rgba(0, 0, 0, 0.3);
+  
+  --font-mono: "Courier New", Courier, monospace;
+  --font-display: 'Impact', 'Arial Black', sans-serif;
+  
+  /* Dynamic Cursor Coordinates & Radius */
+  /* Lens masks (rebuilt each frame by hover.js): holes cut in the grey layer + stripes */
+  --lens-hole: linear-gradient(#000, #000);
+  --stripe: 6px;              /* thickness of each grey/white line */
+}
+
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  min-height: 100vh;
+  background-color: var(--bg-dark);
+}
+
+body {
+  color: var(--primary);
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  line-height: 1.25;
+  overflow-x: hidden;
+}
+
+#bg-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+/* ==================================================
+   NAVIGATION
+================================================== */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  z-index: 500;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  border-bottom: var(--border-thick);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+}
+
+.nav-brand {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  color: #000000;
+  letter-spacing: 1.5px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.nav-links a {
+  color: #000000;
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.nav-links a:not(.btn-brutal-primary):hover {
+  color: #ED8086;
+}
+
+/* ==================================================
+   SCROLL TRACK & HERO STAGE
+================================================== */
+.intro-scroll-track {
+  height: 220vh;
+  position: relative;
+}
+
+.hero-sticky-stage {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 100;
+}
+
+/* ==================================================
+   SPOTLIGHT & DUAL VIDEO ENGINE
+================================================== */
+.hero-video-wrapper {
+  isolation: isolate; /* blend layer only affects the video */
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  cursor: crosshair;
+}
+
+/* ONE video, decoded once. Color shows through the lens holes. */
+.hero-video-wrapper video.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Grayscale layer: a white layer in "saturation" blend mode strips the color
+   from the video. It has the same holes as the stripes, so color shows inside. */
+.hero-video-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: #FFFFFF;
+  mix-blend-mode: saturation;
+  -webkit-mask-image: var(--lens-hole);
+  mask-image: var(--lens-hole);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+
+/* Grey Diagonal Lines Overlay (Masked OUT inside the hover circle) */
+.hero-video-wrapper::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  
+  background: repeating-linear-gradient(
+    -45deg,
+    rgba(255, 255, 255, 0.82) 0,
+    rgba(255, 255, 255, 0.82) var(--stripe),
+    rgba(210, 210, 210, 0.82) var(--stripe),
+    rgba(210, 210, 210, 0.82) calc(var(--stripe) * 2)
+  );
+
+  -webkit-mask-image: var(--lens-hole);
+  mask-image: var(--lens-hole);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+  
+}
+
+/* Lens circles + particles are driven by js/hover.js */
+
+/* Intro Text Overlay */
+.intro-title-overlay {
+  position: absolute;
+  z-index: 10;
+  text-align: center;
+  pointer-events: none; /* Crucial to pass mouse events to the video below */
+  width: 100%;
+  padding: 0 20px;
+  will-change: transform, opacity;
+}
+
+.intro-brand-title {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 10vw, 8.5rem);
+  line-height: 0.85;
+  letter-spacing: -2px;
+  color: #000000;
+  filter: drop-shadow(4px 4px 0px #FFFFFF);
+  margin-bottom: 15px;
+}
+
+.scroll-indicator {
+  font-family: inherit;
+  text-transform: inherit;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: #000000;
+  background: #ffffff75;
+  padding: 6px 16px;
+  display: inline-block;
+  border: none;
+  box-shadow: 4px 4px 0px #000000;
+  animation: bounce 1.5s infinite alternate;
+  pointer-events: auto;   /* the overlay is pointer-events: none, so opt this button back in */
+  cursor: pointer;
+  transition: background 0.1s ease, box-shadow 0.1s ease;
+}
+
+.scroll-indicator:hover {
+  background: #FFFFFF;
+  box-shadow: 6px 6px 0px #000000;
+}
+
+.scroll-indicator:focus-visible {
+  outline: 3px solid #000000;
+  outline-offset: 3px;
+}
+
+@keyframes bounce {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(8px); }
+}
+
+/* ==================================================
+   MAIN CONTENT LAYOUT
+================================================== */
+.app-container {
+  max-width: 1280px;
+  margin: -100vh auto 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+  position: relative;
+  z-index: 101;
+  opacity: 0;
+  pointer-events: none;
+  will-change: opacity, transform;
+}
+
+.app-container.active {
+  pointer-events: all;
+}
+
+.hud-meta-bar {
+  border: var(--border-thin);
+  padding: 6px 15px;
+  font-size: 0.7rem;
+  display: flex;
+  justify-content: space-between;
+  color: #000000;
+  background: #FFFFFF;
+}
+
+.brutalist-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border: var(--border-heavy);
+  background: #FFFFFF;
+  color: #000000;
+  font-size: 0.75rem;
+  font-weight: bold;
+  width: fit-content;
+  box-shadow: 4px 4px 0px #000000;
+}
+
+.btn-brutal-primary {
+  display: inline-block;
+  padding: 12px 24px;
+  background: #000000;
+  color: #FFFFFF !important;
+  font-family: var(--font-mono);
+  font-weight: 900;
+  text-decoration: none;
+  font-size: 0.85rem;
+  border: 2px solid #000000;
+  box-shadow: -5px 5px 0px #FFFFFF, -6px 6px 0px #000000;
+  transition: all 0.1s ease;
+  cursor: pointer;
+}
+
+.btn-brutal-primary:hover {
+  transform: translate(2px, -2px);
+  box-shadow: -7px 7px 0px #FFFFFF, -8px 8px 0px #000000;
+  background: #222222;
+}
+
+.btn-brutal-secondary {
+  display: inline-block;
+  padding: 12px 24px;
+  border: var(--border-thick);
+  color: #000000;
+  background: #FFFFFF;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 0.85rem;
+  box-shadow: -4px 4px 0px #000000;
+  transition: all 0.1s ease;
+  cursor: pointer;
+}
+
+/* Same lift as the primary button: nudge up-right while the shadow grows */
+.btn-brutal-secondary:hover {
+  transform: translate(2px, -2px);
+  box-shadow: -6px 6px 0px #000000;
+  background: #F2F2F2;
+}
+
+.hero-section {
+  border: var(--border-thick);
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: -10px 10px 0px #E5E5E5;
+  position: relative;
+}
+
+.corner-mark {
+  position: absolute;
+  font-size: 0.65rem;
+  color: #000000;
+  font-weight: bold;
+}
+.top-left { top: 6px; left: 8px; }
+.bottom-right { bottom: 6px; right: 8px; }
+
+.hero-content { display: flex; flex-direction: column; gap: 18px; }
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  line-height: 1.2;
+  letter-spacing: -1px;
+}
+
+.hero-subtitle { color: #000000; font-size: 1.1rem; font-weight: bold; letter-spacing: 2px; }
+
+.hero-bio {
+  text-transform: none;
+  font-size: 0.9rem;
+  color: #000000;
+  max-width: 750px;
+  line-height: 1.5;
+  border-left: 3px solid #000000;
+  padding-left: 14px;
+}
+
+.hero-actions { display: flex; gap: 15px; margin-top: 10px; flex-wrap: wrap; }
+
+.metrics-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+}
+
+.metric-card {
+  border: var(--border-thick);
+  padding: 15px;
+  background: #FFFFFF;
+  box-shadow: -5px 5px 0px #000000, -6px 6px 0px #000000;
+}
+
+.metric-value { font-family: var(--font-display); font-size: 2.2rem; color: #000000; line-height: 1; }
+.metric-label { font-size: 0.7rem; color: #555555; margin-top: 5px; }
+
+.section-header {
+  border-top: var(--border-thick);
+  border-bottom: var(--border-thick);
+  padding: 15px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #FFFFFF;
+}
+
+.section-title { font-family: var(--font-display); font-size: 2.5rem; color: #000000; }
+
+.projects-stack { display: flex; flex-direction: column; gap: 40px; }
+
+/* rows with a full-bleed photo panel stretch it to the row's full height */
+.project-row:has(.photo-media),
+.project-row:has(.phone-stack) {
+  align-items: stretch;
+}
+
+.project-row {
+  border: var(--border-thick);
+  padding: 25px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  align-items: center;
+  background: #FFFFFF;
+  box-shadow: none;
+}
+
+.project-preview {
+  width: 100%;
+  height: 280px;
+  border: var(--border-thick);
+  background: #FAFAFA;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 12px;
+}
+
+.project-img { width: 100%; height: 100%; max-height: 220px; object-fit: contain; margin: 6px 0; }
+.project-info { display: flex; flex-direction: column; gap: 12px; }
+.project-category { color: #000000; font-size: 0.75rem; border: var(--border-thin); padding: 2px 8px; width: fit-content; }
+.project-title { font-family: var(--font-display); font-size: 2.8rem; line-height: 0.9; }
+.project-desc { text-transform: none; font-size: 0.85rem; line-height: 1.4; color: #000000; }
+
+.tag-group { display: flex; flex-wrap: wrap; gap: 8px; }
+.tag-pill { padding: 4px 10px; border: var(--border-thin); background: #FFFFFF; font-size: 0.7rem; font-weight: bold; box-shadow: -2px 2px 0px #000000; }
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 30px;
+  border: var(--border-thick);
+  padding: 35px;
+  background: #FFFFFF;
+  box-shadow: -10px 10px 0px #E5E5E5;
+}
+
+.contact-card {
+  border: var(--border-thick);
+  background: #FFFFFF;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: -5px 5px 0px #000000;
+}
+
+.contact-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border: var(--border-thin);
+  background: #FAFAFA;
+  color: #000000;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.1s ease;
+}
+
+.contact-item > span:last-child { transition: transform 0.1s ease; }
+
+/* Invert to black (like the TRANSMISSION_CHANNEL bar), lift like the buttons, arrow slides out */
+.contact-item:hover {
+  background: #000000;
+  color: #FFFFFF;
+  border-color: #000000;
+  transform: translate(2px, -2px);
+  box-shadow: -4px 4px 0px #BDBDBD;
+}
+
+.contact-item:hover > span:last-child { transform: translateX(4px); }
+
+footer {
+  border: var(--border-thick);
+  padding: 12px;
+  overflow: hidden;
+  white-space: nowrap;
+  background: #FFFFFF;
+  box-shadow: 6px 6px 0px #000000;
+}
+
+.ticker {
+  display: inline-block;
+  animation: marquee 16s linear infinite;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+@media (max-width: 900px) {
+  .metrics-bar { grid-template-columns: repeat(2, 1fr); }
+  .contact-grid { grid-template-columns: 1fr; }
+  .project-row { grid-template-columns: 1fr; }
+}
+/* ==================================================
+   CASE STUDY PAGE  (digitalidcasestudy.html)
+================================================== */
+.case-study-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 150px 20px 80px;   /* top padding clears the fixed nav */
+  display: flex;
+  flex-direction: column;
+  gap: 45px;
+}
+
+.back-btn { margin-right: 6px; box-shadow: 4px 4px 0px #000000; }
+
+/* Shadow sits on the right, so the hover lift goes up-left */
+.back-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px #000000;
+}
+
+/* Case study header row: back button on the left, process deck download on the right */
+.cs-top-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+/* --- Project metadata bar (role / duration / client / tools) --- */
+.meta-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 25px;
+  border: var(--border-thick);
+  background: #FFFFFF;
+  box-shadow: -10px 10px 0px #E5E5E5, -11px 11px 0px #000000;
+}
+
+.meta-item { display: flex; flex-direction: column; gap: 6px; }
+.meta-label { font-size: 0.6rem; font-weight: bold; color: #666666; letter-spacing: 1px; }
+.meta-value { font-size: 0.75rem; font-weight: bold; line-height: 1.35; color: #000000; }
+
+/* --- Image / video frames with the SYS_ID header + LABEL footer --- */
+.img-placeholder-box {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px;
+  border: var(--border-thick);
+  background: #FAFAFA;
+  box-shadow: -5px 5px 0px #E5E5E5, -6px 6px 0px #000000;
+}
+
+.preview-header { font-size: 0.65rem; font-weight: bold; }
+
+.img-placeholder-box img,
+.cs-section > img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+/* The HTML sets height:500px inline; the reference frame is taller.
+   Delete the inline height in the HTML if you'd rather control it here. */
+.img-placeholder-box video {
+  height: 600px !important;
+  object-fit: contain;
+}
+
+/* Digital ID prototype video: clip the black frame around the phone.
+   The video is 964x1918; the phone body sits at x 26-939, y 19-1900 with ~152px corners.
+   The box is sized to the phone, the video is scaled/offset so the phone fills it,
+   and the rounded corners hide the black at the phone's corners. */
+/* Maine coast scene spans the whole video box, edge to edge, sitting on the bottom border
+   (behind the bottom label too, which is white so it reads on the cliffs and water) */
+.did-video-box {
+  background: url('../images/DIDimages/DIDBackground.png') center bottom / 100% auto no-repeat, #FFFFFF;
+}
+
+/* Row of photos/videos at one shared height. Each item's flex-grow equals its
+   width/height ratio (set inline with --ar), so they all end up exactly as tall as each other. */
+.media-row {
+  display: flex;
+  gap: 20px;   /* keep equal to .koike-video-row.text-first's gap so the columns line up */
+  align-items: flex-start;
+}
+
+/* Poster + TV slide grid (Nissha 01): two compact media-rows, each 2 posters + 3 slides
+   at one shared height, so the whole set is short on the page */
+.design-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 10px 0 20px;
+}
+
+.design-grid .media-row { gap: 10px; }
+
+/* Phones: wrap into a simple 2-column grid instead of one long stacked column */
+@media (max-width: 900px) {
+  .design-grid .media-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .design-grid .media-row > img { width: 100%; aspect-ratio: auto; height: auto; }
+}
+
+/* Explore More (bottom of the case studies): the left column stretches to the card's height
+   and the buttons are pushed to its bottom, so they line up with the bottom of the NEXT_PROJECTS card */
+.explore-more > div:first-child {
+  display: flex;
+  flex-direction: column;
+}
+
+.explore-more .hero-actions { margin-top: auto !important; }   /* beats the inline margin-top */
+
+/* Text on the left, a group of images on the right (images column capped so tall pages stay a sensible height) */
+.text-media-split {
+  display: grid;
+  grid-template-columns: minmax(260px, 1fr) minmax(0, 700px);
+  gap: 35px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .text-media-split { grid-template-columns: 1fr; }
+}
+
+/* A set of small icons sharing one slot in a .media-row: the slot matches the row height,
+   and the icons sit inside it at a smaller size, evenly spaced and vertically centered */
+.media-row > .icon-set {
+  flex-basis: 0;
+  min-width: 0;
+  aspect-ratio: var(--ar);
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.icon-set img {
+  display: block;
+  height: 65%;
+  width: auto;
+  max-width: 30%;
+  object-fit: contain;
+}
+
+/* Grey dashed placeholder for an image or video that hasn't been added yet.
+   Set its shape with --ar (defaults to 16:9). Swap it for an <img> or <video> later. */
+.ph {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: var(--ar, 16 / 9);
+  background: #E5E5E5;
+  border: 2px dashed #BDBDBD;
+  color: #8A8A8A;
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.media-row > img,
+.media-row > video,
+.media-row > .ph {
+  flex-basis: 0;
+  min-width: 0;
+  width: 0;
+  height: auto;
+  aspect-ratio: var(--ar);
+  object-fit: cover;
+  display: block;
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .media-row { flex-direction: column; }
+  .media-row > img,
+  .media-row > video,
+  .media-row > .ph,
+  .media-row > .icon-set { width: 100%; flex: none !important; }
+}
+
+/* Koike hero: full-width box like the sections; video stays capped at 820px on the left,
+   header + body text fill the space to its right */
+.koike-video-row {
+  display: grid;
+  grid-template-columns: minmax(0, 820px) minmax(260px, 1fr);   /* text never squeezes below 260px; the video gives way first */
+  gap: 35px;
+  align-items: start;   /* header lines up with the top edge of the video */
+}
+
+.koike-video-text {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Tighter lines, and a hairline stroke to thicken Courier's thin strokes so it reads darker */
+.koike-video-text .cs-text,
+.koike-page .cs-text,
+.nissha-page .cs-text,
+.about-page .cs-text,
+.did-page .cs-text,
+.did-page .bullet-list li {   /* Koike + Digital ID case studies share the same paragraph look */
+  line-height: 1.45;
+  -webkit-text-stroke: 0.35px currentColor;
+}
+
+/* Koike pamphlet pages: two groups of four side by side.
+   Tight 4px gutter inside a group, 20px gap between the groups. */
+.pamphlet-pages {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.pamphlet-group {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+}
+
+.pamphlet-group img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 900px) {
+  .pamphlet-pages { grid-template-columns: 1fr; }
+}
+
+/* Click-to-zoom: pages lift on hover, open full size in an overlay */
+.pamphlet-group img,
+.zoom-group img {
+  cursor: zoom-in;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.pamphlet-group img:hover,
+.pamphlet-group img:focus-visible,
+.zoom-group img:hover,
+.zoom-group img:focus-visible {
+  transform: translate(2px, -2px);
+  box-shadow: -4px 4px 0px #000000;
+  outline: none;
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 30px;
+  background: rgba(0, 0, 0, 0.88);
+  cursor: zoom-out;
+}
+
+.lightbox.open { display: flex; }
+
+.lightbox img {
+  max-width: min(90vw, 900px);
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  border: 3px solid #FFFFFF;
+  cursor: default;
+}
+
+.lightbox button {
+  flex: none;
+  width: 48px;
+  height: 48px;
+  border: 2px solid #FFFFFF;
+  background: #000000;
+  color: #FFFFFF;
+  font-family: var(--font-mono);
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.lightbox button:hover { background: var(--accent, #E2151F); }
+
+.lightbox .lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+@media (max-width: 600px) {
+  .lightbox { gap: 8px; padding: 10px; }
+  .lightbox button { width: 36px; height: 36px; }
+}
+
+/* Row of three project cards: image, header, paragraph */
+.project-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));   /* cards share the row evenly, however many there are */
+  gap: 20px;
+}
+
+/* Single feature photo under a section's text, centered and capped so tall photos don't run off the screen */
+.cs-feature-img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  max-height: 80vh;
+  margin: 0 auto;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.project-card h3 { font-size: 1rem; }
+
+/* Image placeholder, and the real image once swapped in: same 16:9 frame (fits the screen designs uncropped) */
+.project-card .img-slot,
+.project-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.project-card .img-slot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #E5E5E5;
+  border: 2px dashed #BDBDBD;
+  color: #8A8A8A;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+/* Expandable cards: click to open one full width with its extra detail */
+.project-card {
+  cursor: pointer;
+  padding: 12px;
+  border: 2px solid transparent;
+  transition: border-color 0.1s ease, box-shadow 0.1s ease, transform 0.1s ease;
+}
+
+.project-card:hover,
+.project-card:focus-visible {
+  border-color: #000000;
+  box-shadow: -4px 4px 0px #000000;
+  transform: translate(2px, -2px);
+  outline: none;
+}
+
+.card-more { display: none; }
+.project-card:not(.expanded) .card-more { display: none; }   /* stronger, so card images marked card-more stay hidden in the thumbnail */
+
+.card-toggle-label {
+  font-size: 0.7rem;
+  font-weight: bold;
+  color: var(--accent, #E2151F);
+}
+
+.project-card.expanded {
+  grid-column: 1 / -1;   /* takes the whole row */
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-rows: auto auto auto 1fr;
+  column-gap: 25px;
+  row-gap: 10px;
+  align-content: start;
+  border-color: #000000;
+  box-shadow: -4px 4px 0px #000000;
+  transform: none;
+}
+
+.project-card.expanded .img-slot,
+.project-card.expanded img { grid-row: 1 / span 4; }
+
+/* Expanded: show the whole image at its own shape, no cropping or letterbox bands
+   (!important beats the inline object-fit/background on the banner image) */
+.project-card.expanded img {
+  aspect-ratio: auto;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 80vh;    /* keeps the tall gas display photo from running off the screen */
+  justify-self: center;
+  object-fit: contain !important;
+  background: none !important;
+  align-self: start;
+}
+
+/* Gas display photo (pre-cropped file): when expanded, fill its column's full width, whole image */
+.project-card.expanded img.expanded-full-width {
+  width: 100%;
+  height: auto;
+  max-height: none;
+}
+
+.project-card.expanded .card-more { display: block; }
+
+/* Stack of images in the left column of an expanded card (e.g. banner + Facebook post) */
+.project-card.expanded .card-media {
+  grid-row: 1 / span 4;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.project-card.expanded .card-media img { grid-row: auto; }
+
+/* The tall phone screenshot: whole image, capped height, centered */
+.project-card.expanded .card-media img.card-more {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  max-height: 600px;
+  aspect-ratio: auto;
+  object-fit: contain !important;
+  align-self: center;
+}
+
+/* Extra media that runs across both columns of an expanded card, below the image and text */
+.project-card.expanded .card-wide {
+  grid-column: 1 / -1;
+  margin-top: 15px;
+}
+
+/* Photos inside the wide block: full width, whole image (overrides the card's cover-image rules) */
+.project-card.expanded .card-wide img {
+  grid-row: auto;
+  width: 100%;
+  height: auto;
+  max-height: none;
+  aspect-ratio: auto;
+  object-fit: contain !important;
+}
+
+@media (max-width: 900px) {
+  .project-cards { grid-template-columns: 1fr; }
+  .project-card.expanded { display: flex; }
+}
+
+/* Case-study accent color: Koike red by default, Nissha blue on the Nissha page.
+   Every accent below (slash, rules, underlines, expand label, lightbox hover) uses --accent. */
+:root { --accent: #E2151F; }
+.nissha-page { --accent: #0077C8; }
+
+/* Accents: second slash in section titles, short rule between paragraphs */
+.slash-red { color: var(--accent); }
+
+.koike-video-text .cs-title { border-bottom: 3px solid var(--accent); }   /* underline on the hero header */
+
+/* Short accent line under every small (h3) header on the case-study pages.
+   The hero header is skipped because its cs-title class already gives it a full underline. */
+.koike-page h3:not(.cs-title)::after,
+.nissha-page h3:not(.cs-title)::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 3px;
+  margin-top: 6px;
+  background: var(--accent);
+}
+
+/* Text link in the page's accent color (e.g. link to a live product page) */
+.accent-link {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 2px;
+  transition: transform 0.1s ease;
+}
+
+.accent-link:hover,
+.accent-link:focus-visible { transform: translateX(3px); }
+
+.red-rule {
+  display: block;
+  width: 150px;
+  height: 3px;
+  background: var(--accent);
+}
+
+/* About Me hero: a narrower photo column (portrait photo), text takes the rest */
+.koike-video-row.about-hero-row {
+  grid-template-columns: minmax(0, 380px) minmax(260px, 1fr);
+}
+
+/* About Me photo slideshow: fixed 4:5 frame, whole photo shown (no cropping), crossfade */
+.slideshow {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  background: #1A1A1A;
+  border: var(--border-thick);
+  overflow: hidden;
+}
+
+.slideshow .slides img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.slideshow .slides img.active { opacity: 1; }
+
+.slide-dots {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 10px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  z-index: 2;
+}
+
+.slide-dots button {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border: 1px solid #FFFFFF;
+  background: rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
+
+.slide-dots button.active { background: #FFFFFF; }
+
+@media (prefers-reduced-motion: reduce) {
+  .slideshow .slides img { transition: none; }
+}
+
+/* Mirrored version: text column first, video on the right */
+/* Columns use the same ratios and gap as the .media-row photos below
+   (booth photo 1.333 : kiosk screen 1.783), so the video is exactly as wide as the photo under it */
+.koike-video-row.text-first {
+  grid-template-columns: minmax(0, 1.333fr) minmax(0, 1.783fr);
+  gap: 20px;
+}
+
+.koike-video-row > video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3372 / 1924;
+}
+
+@media (max-width: 900px) {
+  .koike-video-row,
+  .koike-video-row.text-first,
+  .koike-video-row.about-hero-row { grid-template-columns: 1fr; }
+}
+
+.img-placeholder-box.koike-video-box video {
+  width: 100%;
+  height: auto !important;
+  aspect-ratio: 16 / 9;
+  background: #000000;
+}
+
+.did-video-stage {
+  padding: 30px 0;
+}
+
+.phone-video-crop {
+  position: relative;
+  height: 600px;
+  aspect-ratio: 914 / 1882;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 16.6% / 8.1%;
+}
+
+.img-placeholder-box .phone-video-crop video {
+  position: absolute;
+  left: -2.845%;
+  top: -1.01%;
+  width: 105.47%;
+  height: 101.91% !important;
+  max-width: none;
+  object-fit: fill;
+}
+
+/* --- Numbered content sections --- */
+.cs-section {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  padding: 35px;
+  border: var(--border-thick);
+  background: #FFFFFF;
+  box-shadow: -10px 10px 0px #E5E5E5;
+}
+
+.cs-title {
+  font-family: var(--font-display);
+  font-size: 2.25rem;
+  line-height: 1;
+  letter-spacing: -1px;
+  padding-bottom: 15px;
+  border-bottom: var(--border-thin);
+}
+
+.cs-text {
+  text-transform: none;
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: #000000;
+}
+
+.grid-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  align-items: start;
+}
+
+/* --- Square-bullet lists --- */
+.bullet-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+
+.bullet-list li {
+  position: relative;
+  padding-left: 22px;
+  text-transform: none;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: #000000;
+}
+
+.bullet-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: 8px;
+  height: 8px;
+  background: #000000;
+}
+
+.bullet-list strong { color: #000000; }
+
+/* Numbered list: small black number tags, like the callouts on the wireframes */
+ol.bullet-list { counter-reset: bullet-num; }
+ol.bullet-list li { counter-increment: bullet-num; padding-left: 30px; }
+ol.bullet-list li::before {
+  content: counter(bullet-num);
+  top: 0.1em;
+  width: 18px;
+  height: 18px;
+  color: #FFFFFF;
+  font-size: 0.7rem;
+  font-weight: bold;
+  line-height: 18px;
+  text-align: center;
+}
+
+/* Image frame with the border, shadow and fill removed: just the image */
+.img-placeholder-box.no-frame {
+  border: none;
+  box-shadow: none;
+  background: transparent;
+  padding: 0;
+}
+
+@media (max-width: 900px) {
+  .case-study-container { padding-top: 120px; }
+  .meta-grid { grid-template-columns: repeat(2, 1fr); }
+  .grid-2col { grid-template-columns: 1fr; }
+  .cs-section { padding: 22px; }
+  .cs-title { font-size: 1.7rem; }
+  .img-placeholder-box video { height: 320px !important; }
+  .phone-video-crop { height: 420px; }
+}
+
+/* ==================================================
+   FEATURED PROJECT: DIGITAL ID  (phone showcase card)
+================================================== */
+.project-showcase {
+  position: relative;      /* no z-index, so the striped ::before can sit behind the card */
+  padding: 0;
+  gap: 0;
+  align-items: stretch;
+  box-shadow: none;
+  grid-template-columns: 0.72fr 1.18fr;   /* gives the phone/landscape scene more room, less dead space in the text column */
+}
+
+/* Striped offset "shadow" (visible along the left and bottom edges) */
+.project-showcase::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  transform: translate(-18px, 18px);
+  background: repeating-linear-gradient(
+    45deg,
+    #BDBDBD 0,
+    #BDBDBD 10px,
+    #FFFFFF 10px,
+    #FFFFFF 20px
+  );
+}
+
+.project-showcase .project-info {
+  justify-content: center;
+  padding: 40px 30px 40px 45px;
+}
+
+.project-showcase .project-category { font-size: 0.85rem; padding: 4px 10px; }
+.project-showcase .project-desc { font-size: 0.95rem; line-height: 1.5; color: #555555; max-width: 560px; }
+
+/* Three overlapping phones, cropped by the card edges */
+.phone-stack {
+  position: relative;
+  height: 400px;      /* fixed (not min-height) so children's percentage heights resolve reliably */
+  overflow: hidden;
+  background: #FFFFFF;
+}
+
+.phone-stack img {
+  position: absolute;
+  top: 50%;
+  height: 125%;        /* taller than the card so the tilted phones bleed off the edges */
+  width: auto;
+  max-width: none;
+  pointer-events: none;
+}
+
+/* left/top values center each phone's visible body, not the PNG's transparent margin */
+.phone-left   { left: 34%; transform: translate(-48.4%, -49.6%); z-index: 1; }
+.phone-right  { left: 76%; transform: translate(-46.6%, -50.8%); z-index: 2; }
+.phone-middle { left: 54%; transform: translate(-51.2%, -50.8%); z-index: 3; }
+
+/* Landscape backdrop behind the phones: mountain ridge + two tree clusters.
+   No z-index (auto) and declared before the phones in the HTML, so they
+   paint underneath the explicitly z-indexed phone images automatically. */
+.phone-stack img.did-landscape {
+  top: auto;
+  left: 0;
+  bottom: 0;
+  width: 115%;        /* left slope rises from the corner; the rest runs off the right edge */
+  height: auto;        /* natural height, so the hill's top is never cropped flat */
+}
+
+.phone-stack img.did-trees {
+  top: auto;
+  bottom: 11%;
+  width: auto;
+}
+
+.phone-stack img.did-trees-back  { left: 7%;  height: 55%; }   /* tall cluster with the moose, left side */
+.phone-stack img.did-trees-front { left: 27%; height: 38%; }   /* shorter cluster, in front, left side */
+.phone-stack img.did-trees-right {
+  right: -3%;          /* tucked in beside the right phone instead of hanging off the edge */
+  left: auto;
+  bottom: 14%;         /* sits behind the hill (earlier in the HTML), so the base tucks under it */
+  height: 58%;
+  transform: scaleX(-1);   /* mirror the same cluster so it reads as a distinct clump on the right */
+}
+
+@media (max-width: 900px) {
+  .project-showcase { grid-template-columns: 1fr; }
+  .project-showcase .project-info { padding: 30px 25px 10px; }
+  .phone-stack { height: 320px; }
+  .phone-stack img { height: 112%; }
+  .did-trees-back  { height: 50%; }
+  .did-trees-front { height: 36%; }
+  .did-trees-right { height: 45%; }
+}
+
+/* ==================================================
+   FULL-BLEED PHOTO PANEL  (Koike, Nissha project rows)
+================================================== */
+.photo-media {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+  overflow: hidden;
+}
+
+.photo-media > img:first-child {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photo-logo {
+  position: absolute;
+  left: 18px;
+  bottom: 18px;
+  width: 130px;
+  height: auto;
+  max-width: 40%;
+  filter: drop-shadow(2px 2px 0px rgba(0, 0, 0, 0.5));
+}
+
+@media (max-width: 900px) {
+  .photo-media { min-height: 220px; }
+}
+
+
+/* ==================================================
+   KOIKE CARD: edge-to-edge photo + diagonal red/white
+   accent + striped shadow mirrored to the right
+================================================== */
+
+/* Wrapper exists only so the striped shadow (below) can sit OUTSIDE the
+   card's border. The card itself clips its own content (overflow: hidden),
+   which would also clip a ::before on the card, so the shadow lives here. */
+.koike-shadow-wrap { position: relative; }
+
+.koike-shadow-wrap::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  /* Mirror of the Digital ID card's shadow: shifted down-RIGHT instead of down-left */
+  transform: translate(18px, 18px);
+  background: repeating-linear-gradient(
+    45deg,
+    #BDBDBD 0,
+    #BDBDBD 10px,
+    #FFFFFF 10px,
+    #FFFFFF 20px
+  );
+}
+
+.project-koike {
+  position: relative;
+  overflow: hidden;        /* clips the photo + accent exactly to the border */
+  display: block;          /* this card is custom-laid-out, not the shared grid */
+  padding: 0;
+  gap: 0;
+  min-height: 380px;
+  box-shadow: none;        /* replaced by the striped wrapper shadow above */
+}
+
+/* Photo bleeds to the card's top/left/bottom edges. Smaller again, so more
+   of the four accent bands + text panel show. */
+.project-koike .photo-media {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 40%;    /* overrides the shared .photo-media width:100% below */
+  height: 100%;
+  min-height: 0;
+  z-index: 2;    /* above koike-fill, so the photo's own edge always wins if they touch */
+  background: #191919;   /* fills any letterboxing around the contained photo */
+}
+
+/* The narrow 30%-wide box doesn't match the photo's own proportions, so
+   object-fit: cover (the shared default) was cropping content off the
+   sides. Showing the whole photo un-cropped, centered in the box, with a
+   background matching its own black backdrop so the fit looks intentional
+   rather than letterboxed. */
+.project-koike .photo-media > img:first-child {
+  object-fit: contain;
+}
+
+/* koike-fill is z-index 1 — below the photo (2), above nothing else in
+   particular — so if its edge and the photo's edge ever touch, the photo
+   paints on top rather than this wedge covering part of it. */
+.koike-fill {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: #191919;   /* matches the photo's black backdrop */
+  clip-path: polygon(30% 0%, 34% 0%, 54% 100%, 30% 100%);
+}
+
+/* The bands sit above the photo (z-index 3) — they never overlap it at all
+   (they start well clear of the photo's edge), so this is just to keep them
+   visually on top of everything else in the card. */
+.koike-accent {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Four parallel diagonal bands, left to right: white / solid red / gradient
+   red / white. Each one's clip-path starts exactly where the previous one's
+   ends (same slant throughout), so they sit edge-to-edge with no gaps. */
+.koike-accent > span {
+  position: absolute;
+  inset: 0;   /* each shape spans the full card; clip-path carves its visible area */
+}
+
+.koike-white-left {
+  background: #FFFFFF;
+  clip-path: polygon(34% 0%, 35.5% 0%, 55.5% 100%, 54% 100%);
+}
+
+.koike-red-solid {
+  background: #E2151F;
+  clip-path: polygon(35.5% 0%, 38.5% 0%, 58.5% 100%, 55.5% 100%);
+}
+
+.koike-red-gradient {
+  background: linear-gradient(120deg, #5C0000 0%, #D2121E 55%, #FF4B4B 100%);
+  clip-path: polygon(38.5% 0%, 43.5% 0%, 63.5% 100%, 58.5% 100%);
+}
+
+.koike-white-right {
+  background: #FFFFFF;
+  clip-path: polygon(43.5% 0%, 45% 0%, 65% 100%, 63.5% 100%);
+}
+
+.project-koike .project-info {
+  position: relative;
+  z-index: 4;
+  margin-left: 69%;
+  padding: 40px 45px 40px 10px;
+  justify-content: center;
+}
+
+@media (max-width: 900px) {
+  .project-koike { min-height: 0; }
+  .project-koike .photo-media { position: static; inset: auto; width: 100%; height: 220px; }
+  .koike-accent { display: none; }
+  .project-koike .project-info { margin-left: 0; padding: 24px; }
+}
+
+/* ==================================================
+   NISSHA CARD: edge-to-edge photo panel (shares the
+   striped shadow from .koike-shadow-wrap)
+================================================== */
+.project-nissha {
+  overflow: hidden;        /* clips the photo panel to the card border */
+  padding: 0;
+  gap: 0;
+  min-height: 380px;
+  box-shadow: none;
+}
+
+.project-nissha .photo-media {
+  background: #FFFFFF;
+  min-height: 0;
+}
+
+/* Photo fills the panel top to bottom; cropping is split, mostly off the left with a little off the right */
+.project-nissha .photo-media > img {
+  object-fit: cover;
+  object-position: 70% center;
+}
+
+.project-nissha .project-info {
+  justify-content: center;
+  padding: 30px 40px 30px 30px;
+}
+
+@media (max-width: 900px) {
+  .project-nissha { min-height: 0; }
+  .project-nissha .photo-media { height: 260px; }
+  .project-nissha .project-info { padding: 24px; }
+}
