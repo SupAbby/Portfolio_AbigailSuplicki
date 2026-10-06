@@ -94,6 +94,29 @@ nav {
   color: #ED8086;
 }
 
+/* Short "AS" brand only shows on small screens */
+.brand-short { display: none; }
+
+/* Mobile nav: swap the full name for "AS" and tighten spacing so everything fits on one line */
+@media (max-width: 700px) {
+  nav { padding: 10px 14px; }
+  .brand-full { display: none; }
+  .brand-short { display: inline; }
+  .nav-brand { font-size: 1.5rem; letter-spacing: 1px; }
+  .nav-links { gap: 10px; }
+  .nav-links a { font-size: 0.7rem; }
+  .nav-links .btn-brutal-primary {
+    padding: 8px 12px;
+    box-shadow: -3px 3px 0px #FFFFFF, -4px 4px 0px #000000;
+  }
+}
+
+/* Very narrow phones: shrink the links a little more */
+@media (max-width: 400px) {
+  .nav-links { gap: 8px; }
+  .nav-links a { font-size: 0.65rem; letter-spacing: -0.2px; }
+}
+
 /* ==================================================
    SCROLL TRACK & HERO STAGE
 ================================================== */
@@ -1286,9 +1309,14 @@ ol.bullet-list li::before {
   .project-showcase .project-info { padding: 30px 25px 10px; }
   .phone-stack { height: 320px; }
   .phone-stack img { height: 112%; }
-  .did-trees-back  { height: 50%; }
-  .did-trees-front { height: 36%; }
-  .did-trees-right { height: 45%; }
+
+  /* Mobile: no landscape or trees, just the three phones centered in the card */
+  .phone-stack img.did-landscape,
+  .phone-stack img.did-trees { display: none; }
+
+  .phone-left   { left: 30%; }
+  .phone-middle { left: 50%; }
+  .phone-right  { left: 70%; }
 }
 
 /* ==================================================
@@ -1443,7 +1471,8 @@ ol.bullet-list li::before {
 @media (max-width: 900px) {
   .project-koike { min-height: 0; }
   .project-koike .photo-media { position: static; inset: auto; width: 100%; height: 220px; }
-  .koike-accent { display: none; }
+  .koike-accent,
+  .koike-fill { display: none; }   /* the diagonal bands and the black wedge would cut across the stacked text */
   .project-koike .project-info { margin-left: 0; padding: 24px; }
 }
 
