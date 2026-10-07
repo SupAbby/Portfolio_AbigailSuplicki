@@ -74,7 +74,10 @@ nav {
   font-size: 1.6rem;
   color: #000000;
   letter-spacing: 1.5px;
+  text-decoration: none;   /* it's a link back to the home page now */
 }
+
+.nav-brand:hover { color: #ED8086; }   /* same hover color as the nav links */
 
 .nav-links {
   display: flex;
@@ -1509,3 +1512,184 @@ ol.bullet-list li::before {
   .project-nissha .photo-media { height: 260px; }
   .project-nissha .project-info { padding: 24px; }
 }
+/* ==================================================
+   PROJECTS PAGE: compact cards, three to a row
+   (same card markup as the home page, restyled as
+   image-on-top tiles; only applies inside .projects-grid)
+================================================== */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 35px;
+  align-items: stretch;
+}
+
+.projects-grid > .koike-shadow-wrap { display: flex; }
+
+.projects-grid .project-row {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 0;
+  padding: 0;
+  gap: 0;
+}
+
+/* Image area: same height on every card */
+.projects-grid .project-koike .photo-media,
+.projects-grid .project-nissha .photo-media,
+.projects-grid .phone-stack {
+  position: relative;
+  inset: auto;
+  width: 100%;
+  height: 220px;
+  min-height: 0;
+  flex: none;
+}
+
+/* Koike: no diagonal bands or wedge in the small tile */
+.projects-grid .koike-accent,
+.projects-grid .koike-fill { display: none; }
+
+/* Digital ID: phones on top (like the other two), no landscape, phones centered */
+.projects-grid .phone-stack { order: -1; }
+.projects-grid .phone-stack img { height: 118%; }
+.projects-grid .phone-stack img.did-landscape,
+.projects-grid .phone-stack img.did-trees { display: none; }
+.projects-grid .phone-left   { left: 28%; }
+.projects-grid .phone-middle { left: 50%; }
+.projects-grid .phone-right  { left: 72%; }
+
+/* Text area: compact, button pinned to the bottom so all three line up */
+.projects-grid .project-info,
+.projects-grid .project-koike .project-info,
+.projects-grid .project-showcase .project-info,
+.projects-grid .project-nissha .project-info {
+  flex: 1;
+  margin-left: 0;
+  padding: 20px;
+  gap: 10px;
+  justify-content: flex-start;
+}
+
+.projects-grid .project-title { font-size: 1.6rem; line-height: 1; }
+.projects-grid .project-category { font-size: 0.7rem; }
+.projects-grid .project-info .btn-brutal-primary { margin-top: auto !important; font-size: 0.75rem; padding: 10px 16px; }
+
+/* Tablet: two across; phone: one */
+@media (max-width: 1100px) {
+  .projects-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 700px) {
+  .projects-grid { grid-template-columns: 1fr; }
+}
+
+/* Projects page: Nissha tile uses the pre-cropped photo; keep the pads centered */
+.projects-grid .project-nissha .photo-media > img {
+  object-fit: cover;
+  object-position: center center;
+}
+
+/* Projects page: whole card is clickable (see script in projects.html) */
+.projects-grid .card-clickable {
+  position: relative;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+  transition: top 0.1s ease, left 0.1s ease;
+}
+
+/* Same lift as the buttons. Uses top/left, not transform, so the Digital ID card's
+   striped shadow (a z-index -1 ::before) stays behind the card instead of showing through it. */
+.projects-grid .card-clickable:hover { top: -2px; left: 2px; }
+
+/* Projects page card footer: EXPLORE button on the left, plain-text tag at the bottom right */
+.projects-grid .card-footer {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.projects-grid .card-footer .btn-brutal-primary { margin-top: 0 !important; }
+
+.projects-grid .card-tag {
+  font-size: 0.75rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: #000000;
+  white-space: nowrap;
+}
+
+/* Projects page filter buttons (left of the INDEX badge) */
+.filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.filter-btn {
+  padding: 8px 16px;
+  border: 2px solid #000000;
+  background: #FFFFFF;
+  color: #000000;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: -3px 3px 0px #000000;
+  transition: all 0.1s ease;
+}
+
+.filter-btn:hover,
+.filter-btn:focus-visible {
+  transform: translate(2px, -2px);
+  box-shadow: -5px 5px 0px #000000;
+  outline: none;
+}
+
+.filter-btn.active {
+  background: #000000;
+  color: #FFFFFF;
+}
+
+/* Cards hidden by a filter (beats the display: flex set on the card wrappers) */
+.projects-grid > [hidden] { display: none !important; }
+
+/* Let the filter buttons and INDEX badge wrap onto two lines on narrow screens */
+.projects-page .section-header { flex-wrap: wrap; gap: 15px; }
+
+/* Projects page filler cards: grey placeholder image at the same 220px height as the real cards */
+.projects-grid .project-filler { background: #FFFFFF; }
+
+.projects-grid .project-filler .ph {
+  width: 100%;
+  height: 220px;
+  aspect-ratio: auto;
+  flex: none;
+  border: none;
+}
+
+/* Images swapped in later fill the same area */
+.projects-grid .project-filler > img {
+  display: block;
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+/* Projects page: stretch every card's text area full width so it's left-aligned like Koike.
+   (The base .project-row centers its children; only cards with a .photo-media overrode that.) */
+.projects-grid .project-row { align-items: stretch; }
+
+/* Projects page: show a card image whole (no cropping), centered with padding, e.g. the tall Tamagotchi device */
+.projects-grid .project-filler > img.fit-whole {
+  object-fit: contain;
+  padding: 15px;
+  background: #FFFFFF;
+}
+
+/* Home page: let the VIEW_MORE_PROJECTS title and its button wrap on narrow screens */
+.section-header { flex-wrap: wrap; gap: 15px; }

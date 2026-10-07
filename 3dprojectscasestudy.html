@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ABIGAIL SUPLICKI // 3D_PROJECTS</title>
+
+  <!-- LINKED CSS SYSTEM -->
+  <link rel="stylesheet" href="css/styles.css">
+
+</head>
+<body class="cs-page">
+
+  <!-- BACKGROUND CANVAS -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- NAVIGATION -->
+  <nav>
+    <a href="index.html" class="nav-brand" aria-label="Abigail Suplicki, home"><span class="brand-full">ABIGAIL SUPLICKI // UI_UX</span><span class="brand-short" aria-hidden="true">AS</span></a>
+    <div class="nav-links">
+      <a href="projects.html">[ PROJECTS ]</a>
+      <a href="aboutme.html">[ ABOUT ME ]</a>
+      <a href="files/SuplickiAbigail_Resume-Current.pdf" download="SuplickiAbigail_Resume-Current">[ RESUME ]</a>
+      <a href="index.html#contact" class="btn-brutal-primary">LET'S TALK</a>
+    </div>
+  </nav>
+
+  <!-- CASE STUDY CONTAINER -->
+  <main class="case-study-container">
+
+    <!-- BACK BUTTON & HEADER -->
+    <div>
+      <div class="cs-top-actions">
+        <a href="projects.html" class="btn-brutal-secondary back-btn">◄ BACK TO PROJECTS</a>
+      </div>
+      <h1 class="hero-title" style="font-size: clamp(2.5rem, 6vw, 4.5rem); margin-top: 10px;">3D PROJECTS</h1>
+      <p class="hero-subtitle" style="margin-top: 5px;">COMING SOON</p>
+    </div>
+
+    <!-- HERO IMAGE (case study write-up coming soon) -->
+    <div class="img-placeholder-box" style="box-shadow: 8px 8px 0px #000000;">
+      <div class="preview-header" style="display: flex; justify-content: space-between; font-size: 0.65rem; border-bottom: var(--border-thin); padding-bottom: 5px;">
+        <span>SYS_ID: 3D_PROJECTS</span>
+        <span>3D MODELING, SCULPTING, &amp; TEXTURING</span>
+      </div>
+
+      <img src="images/Steamengine.png" alt="Stylized 3D steam engine with pink pulleys, a green belt, and a blue boiler" style="max-height: 560px; width: auto; max-width: 100%;">
+
+      <div class="preview-header" style="display: flex; justify-content: space-between; font-size: 0.65rem; border-top: var(--border-thin); padding-top: 5px;">
+        <span>STATUS: CASE STUDY IN PROGRESS</span>
+        <span>COMING SOON</span>
+      </div>
+    </div>
+
+    <!-- EXPLORE MORE: links to the other case studies (same look as the home page contact section) -->
+    <section class="contact-grid explore-more">
+      <div>
+        <div class="brutalist-badge" style="margin-bottom: 15px;">✦ EXPLORE_MORE</div>
+        <h2 class="hero-title" style="font-size: 3rem; margin-bottom: 15px;">KEEP EXPLORING THE ARCHIVE</h2>
+        <p class="hero-bio" style="margin-bottom: 20px;">
+          See more of my work in UI/UX, branding, print, and packaging design.
+        </p>
+
+        <div class="hero-actions" style="margin-top: 25px; flex-wrap: wrap;">
+          <a href="koikecasestudy.html" class="btn-brutal-primary">KOIKE CASE STUDY ➔</a>
+          <a href="nisshacasestudy.html" class="btn-brutal-primary">NISSHA CASE STUDY ➔</a>
+          <a href="aboutme.html" class="btn-brutal-secondary">ABOUT ME</a>
+        </div>
+      </div>
+
+      <div class="contact-card">
+        <p style="font-weight: 900; color: #FFFFFF; background: #000000; padding: 6px 12px; font-size: 0.8rem;">[ TRANSMISSION_CHANNEL ]</p>
+        <a href="mailto:suplickiabby@gmail.com" class="contact-item">
+          <span>[✉] suplickiabby@gmail.com</span>
+          <span>➔</span>
+        </a>
+        <a href="tel:7162206374" class="contact-item">
+          <span>[✆] (716) 220-6374</span>
+          <span>➔</span>
+        </a>
+        <a href="https://www.linkedin.com/in/abigail-suplicki-6648b1351/" class="contact-item">
+          <span class="contact-label"><span class="channel-icon">[in]</span> LINKEDIN_PROFILE</span>
+          <span>➔</span>
+        </a>
+        <a href="files/SuplickiAbigail_Resume-Current.pdf" download="SuplickiAbigail_Resume-Current" class="contact-item">
+          <span class="contact-label"><span class="channel-icon">[✦]</span> RESUME_DOWNLOAD</span>
+          <span>➔</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- FOOTER TICKER (same as the home page) -->
+    <footer>
+      <div class="ticker">
+        /// ABIGAIL SUPLICKI /// UI/UX DESIGNER /// RIT NEW MEDIA DESIGN CLASS OF 2027 /// AVAILABLE FOR SUMMER 2027 FULL TIME /// EAST CONCORD - ROCHESTER NY /// TRANSMISSION ENDS ///
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- CANVAS GRID SCRIPT -->
+  <script>
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      drawStaticGrid();
+    }
+
+    function drawStaticGrid() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.lineWidth = 1.2;
+      const step = 45;
+
+      ctx.strokeStyle = 'rgba(0, 0, 0, 0.05)';
+      for (let x = 0; x < canvas.width; x += step) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, canvas.height);
+        ctx.stroke();
+      }
+
+      for (let y = 0; y < canvas.height; y += step) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(canvas.width, y);
+        ctx.stroke();
+      }
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+  </script>
+</body>
+</html>

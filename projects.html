@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ABIGAIL SUPLICKI // PROJECTS</title>
+
+  <!-- LINKED CSS SYSTEM -->
+  <link rel="stylesheet" href="css/styles.css">
+
+</head>
+<body class="projects-page">
+
+  <!-- BACKGROUND CANVAS -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- NAVIGATION -->
+  <nav>
+    <a href="index.html" class="nav-brand" aria-label="Abigail Suplicki, home"><span class="brand-full">ABIGAIL SUPLICKI // UI_UX</span><span class="brand-short" aria-hidden="true">AS</span></a>
+    <div class="nav-links">
+      <a href="projects.html" aria-current="page">[ PROJECTS ]</a>
+      <a href="aboutme.html">[ ABOUT ME ]</a>
+      <a href="files/SuplickiAbigail_Resume-Current.pdf" download="SuplickiAbigail_Resume-Current">[ RESUME ]</a>
+      <a href="index.html#contact" class="btn-brutal-primary">LET'S TALK</a>
+    </div>
+  </nav>
+
+  <main class="case-study-container">
+
+    <!-- HEADER -->
+    <div>
+      <div class="cs-top-actions">
+        <a href="index.html" class="btn-brutal-secondary back-btn">◄ BACK TO HOME</a>
+      </div>
+      <h1 class="hero-title" style="font-size: clamp(2.5rem, 6vw, 4.5rem); margin-top: 10px;">PROJECTS</h1>
+      <p class="hero-subtitle" style="margin-top: 5px;">// FULL_ARCHIVE</p>
+    </div>
+
+    <!-- SECTION HEADER -->
+    <div class="section-header" id="work">
+      <!-- Filter buttons: show only the cards whose bottom-right tag matches -->
+      <div class="filter-buttons" role="group" aria-label="Filter projects">
+        <button type="button" class="filter-btn active" aria-pressed="true">ALL</button>
+        <button type="button" class="filter-btn" aria-pressed="false">INTERNSHIP</button>
+        <button type="button" class="filter-btn" aria-pressed="false">UI/UX</button>
+        <button type="button" class="filter-btn" aria-pressed="false">3D DESIGN</button>
+      </div>
+      <div class="brutalist-badge">INDEX [01-09]</div>
+    </div>
+
+    <!-- PROJECTS STACK -->
+    <div class="projects-stack projects-grid">
+      <div class="koike-shadow-wrap">
+        <article class="project-row project-koike">
+          <div class="photo-media">
+            <img src="images/KoikeGasPamphlet.png" alt="Koike Aronson Wel-Handy Multi Next brochure spread">
+            <img class="photo-logo" src="images/KoikeLogo.png" alt="Koike Aronson Ransome logo">
+          </div>
+          <span class="koike-fill" aria-hidden="true"></span>
+          <div class="koike-accent" aria-hidden="true">
+            <span class="koike-white-left"></span>
+            <span class="koike-red-solid"></span>
+            <span class="koike-red-gradient"></span>
+            <span class="koike-white-right"></span>
+          </div>
+          <div class="project-info">
+            <span class="project-category">SYS // MARKETING INTERNSHIP</span>
+            <h3 class="project-title">KOIKE ARONSON INC.</h3>
+            <div class="card-footer">
+              <a href="koikecasestudy.html" class="btn-brutal-primary" style="margin-top: 10px; width: fit-content;">EXPLORE ➔</a>
+              <span class="card-tag">INTERNSHIP</span>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- PROJECT 2: DIGITAL ID -->
+      <article class="project-row project-showcase">
+        <div class="project-info">
+          <span class="project-category">SYS // APP DESIGN</span>
+          <h3 class="project-title">DIGITAL ID</h3>
+          <div class="card-footer">
+            <a href="digitalidcasestudy.html" class="btn-brutal-primary" style="margin-top: 10px; width: fit-content;">EXPLORE ➔</a>
+            <span class="card-tag">UI/UX</span>
+          </div>
+        </div>
+
+        <div class="phone-stack">
+          <!-- Landscape backdrop: mountain ridge + two tree clusters, behind the phones -->
+          <img class="did-trees did-trees-right" src="images/DIDTrees2.png" alt="" aria-hidden="true">
+          <img class="did-trees did-trees-back" src="images/DIDTrees.png" alt="" aria-hidden="true">
+          <img class="did-trees did-trees-front" src="images/DIDTrees2.png" alt="" aria-hidden="true">
+          <img class="did-landscape" src="images/DIDBackground2.png" alt="" aria-hidden="true">
+
+          <img class="phone-left" src="images/DIDThumbLeft.png" alt="Maine ID welcome and login screen">
+          <img class="phone-right" src="images/DIDThumbRight.png" alt="Maine ID full driver's license screen">
+          <img class="phone-middle" src="images/DIDThumbMiddle.png" alt="Maine ID age verification screen">
+        </div>
+      </article>
+
+      <!-- PROJECT 3: NISSHA MEDICAL TECHNOLOGIES -->
+      <div class="koike-shadow-wrap">
+      <article class="project-row project-nissha">
+        <div class="photo-media">
+          <img src="images/NisshaPadsCropped.png" alt="Defibrillation electrode pads in front of a patient monitor">
+        </div>
+        <div class="project-info">
+          <span class="project-category">SYS // GRAPHIC DESIGN INTERNSHIP</span>
+          <h3 class="project-title">NISSHA MEDICAL TECHNOLOGIES</h3>
+          <div class="card-footer">
+            <a href="nisshacasestudy.html" class="btn-brutal-primary" style="margin-top: 10px; width: fit-content;">EXPLORE ➔</a>
+            <span class="card-tag">INTERNSHIP</span>
+          </div>
+        </div>
+      </article>
+      </div>
+
+      <!-- FILLER CARDS (04-09): replace the .ph placeholder with an <img>, and set the title, href, and tag -->
+      <div class="koike-shadow-wrap">
+        <article class="project-row project-filler">
+          <img src="images/3DSceneFlyThrough.webp" alt="3D render of a weathered kitchen with rusted pans, a sink, and light through a curtained window">
+          <div class="project-info">
+            <span class="project-category">SYS // 3D MODELING</span>
+            <h3 class="project-title">3D SCENE FLY THROUGH</h3>
+            <div class="card-footer">
+              <a href="3dscenecasestudy.html" class="btn-brutal-primary" style="margin-top: 10px; width: fit-content;">EXPLORE ➔</a>
+              <span class="card-tag">3D DESIGN</span>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="koike-shadow-wrap">
+        <article class="project-row project-filler">
+          <img src="images/Dunkin.png" alt="Dunkin' drive-thru kiosk screens: welcome, menu, and cold brew customization">
+          <div class="project-info">
+            <span class="project-category">SYS // KIOSK</span>
+            <h3 class="project-title">DUNKIN' DRIVE THRU KIOSK</h3>
+            <div class="card-footer">
+              <a href="dunkincasestudy.html" class="btn-brutal-primary" style="margin-top: 10px; width: fit-content;">EXPLORE ➔</a>
+              <span class="card-tag">UI/UX</span>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="koike-shadow-wrap">
+        <article class="project-row project-filler">
+          <img src="images/Snakes.png" alt="Snakes website: Morphs page with a 3D Coral Tessera corn snake and belly pattern callout">
+          <div class="project-info">
+            <span class="project-category">SYS // WEBSITE DESIGN</span>
+            <h3 class="project-title">SNAKES</h3>
+            <div class="card-footer">
+              <a href="snakescasestudy.html" class="btn-brutal-primary" style="margin-top: 10px; width: fit-content;">EXPLORE ➔</a>
+              <span class="card-tag">UI/UX</span>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="koike-shadow-wrap">
+        <article class="project-row project-filler">
+          <img src="images/Dashboard.png" alt="Fahrenheit car dashboard: speedometer, weather, tire pressure, temps, and water methanol injection gauges">
+          <div class="project-info">
+            <span class="project-category">SYS // DASHBOARD DESIGN</span>
+            <h3 class="project-title">FAHRENHEIT DASHBOARD</h3>
+            <div class="card-footer">
+              <a href="dashboardcasestudy.html" class="btn-brutal-primary" style="margin-top: 10px; width: fit-content;">EXPLORE ➔</a>
+              <span class="card-tag">UI/UX</span>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="koike-shadow-wrap">
+        <article class="project-row project-filler">
+          <img class="fit-whole" src="images/Tamagotchi.png" alt="Virtual pet device showing a small blue creature named Britney in a pine forest">
+          <div class="project-info">
+            <span class="project-category">SYS // GAME DESIGN</span>
+            <h3 class="project-title">TAMAGOTCHI</h3>
+            <div class="card-footer">
+              <a href="tamagotchicasestudy.html" class="btn-brutal-primary" style="margin-top: 10px; width: fit-content;">EXPLORE ➔</a>
+              <span class="card-tag">UI/UX</span>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="koike-shadow-wrap">
+        <article class="project-row project-filler">
+          <img src="images/Steamengine.png" alt="Stylized 3D steam engine with pink pulleys, a green belt, and a blue boiler">
+          <div class="project-info">
+            <span class="project-category">SYS // 3D MODELING, SCULPTING, & TEXTURING</span>
+            <h3 class="project-title">3D PROJECTS</h3>
+            <div class="card-footer">
+              <a href="3dprojectscasestudy.html" class="btn-brutal-primary" style="margin-top: 10px; width: fit-content;">EXPLORE ➔</a>
+              <span class="card-tag">3D DESIGN</span>
+            </div>
+          </div>
+        </article>
+      </div>
+
+
+    </div>
+
+    <!-- CONTACT SECTION -->
+    <section class="contact-grid" id="contact">
+      <div>
+        <div class="brutalist-badge" style="margin-bottom: 15px;">✦ OPEN_TO_WORK</div>
+        <h2 class="hero-title" style="font-size: 3rem; margin-bottom: 15px;">LET'S CREATE SOMETHING AMAZING TOGETHER</h2>
+        <p class="hero-bio" style="margin-bottom: 20px;">
+          Currently seeking Summer 2027 full time roles in UI/UX, product design, graphic design and digital design.
+        </p>
+        <div class="tag-group">
+          <span class="tag-pill">EAST CONCORD, NY</span>
+          <span class="tag-pill">RIT CLASS OF 2027</span>
+          <span class="tag-pill">NEW MEDIA DESIGN</span>
+          <span class="tag-pill">3.64 GPA</span>
+        </div>
+      </div>
+
+      <div class="contact-card">
+        <p style="font-weight: 900; color: #FFFFFF; background: #000000; padding: 6px 12px; font-size: 0.8rem;">[ TRANSMISSION_CHANNEL ]</p>
+        <a href="mailto:suplickiabby@gmail.com" class="contact-item">
+          <span>[✉] suplickiabby@gmail.com</span>
+          <span>➔</span>
+        </a>
+        <a href="tel:7162206374" class="contact-item">
+          <span>[✆] (716) 220-6374</span>
+          <span>➔</span>
+        </a>
+        <a href="https://www.linkedin.com/in/abigail-suplicki-6648b1351/" class="contact-item">
+          <span class="contact-label"><span class="channel-icon">[in]</span> LINKEDIN_PROFILE</span>
+          <span>➔</span>
+        </a>
+        <a href="files/SuplickiAbigail_Resume-Current.pdf" download="SuplickiAbigail_Resume-Current" class="contact-item">
+          <span class="contact-label"><span class="channel-icon">[✦]</span> RESUME_DOWNLOAD</span>
+          <span>➔</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- FOOTER TICKER -->
+    <footer>
+      <div class="ticker">
+        /// ABIGAIL SUPLICKI /// UI/UX DESIGNER /// RIT NEW MEDIA DESIGN CLASS OF 2027 /// AVAILABLE FOR SUMMER 2027 FULL TIME /// EAST CONCORD - ROCHESTER NY /// TRANSMISSION ENDS ///
+      </div>
+    </footer>
+
+  </main>
+
+  <script>
+    /* Projects page: the whole card is clickable and goes where its EXPLORE button goes.
+       The button itself stays the keyboard-focusable link. */
+    document.querySelectorAll('.projects-grid .project-row').forEach(card => {
+      const link = card.querySelector('.project-info a[href]');
+      if (!link) return;
+      card.classList.add('card-clickable');
+      card.addEventListener('click', (e) => {
+        if (e.target.closest('a')) return;   // the button handles its own click
+        window.location.href = link.href;
+      });
+    });
+  </script>
+
+  <script>
+    /* Projects page filters: each button shows only the cards whose bottom-right tag matches the
+       button's own label (ALL shows everything). To add a filter, add a button whose text matches the tag. */
+    (() => {
+      const items = [...document.querySelectorAll('.projects-grid > *')];
+      const buttons = [...document.querySelectorAll('.filter-btn')];
+      buttons.forEach(btn => btn.addEventListener('click', () => {
+        const filter = btn.textContent.trim().toUpperCase();
+        buttons.forEach(b => {
+          const on = b === btn;
+          b.classList.toggle('active', on);
+          b.setAttribute('aria-pressed', on);
+        });
+        items.forEach(item => {
+          const tag = (item.querySelector('.card-tag') || {}).textContent || '';
+          item.hidden = filter !== 'ALL' && tag.trim().toUpperCase() !== filter;
+        });
+      }));
+    })();
+  </script>
+
+  <!-- CANVAS GRID SCRIPT -->
+  <script>
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      drawStaticGrid();
+    }
+
+    function drawStaticGrid() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.lineWidth = 1.2;
+      const step = 45;
+
+      ctx.strokeStyle = 'rgba(0, 0, 0, 0.05)';
+      for (let x = 0; x < canvas.width; x += step) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, canvas.height);
+        ctx.stroke();
+      }
+
+      for (let y = 0; y < canvas.height; y += step) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(canvas.width, y);
+        ctx.stroke();
+      }
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+  </script>
+</body>
+</html>
