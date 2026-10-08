@@ -735,6 +735,7 @@ footer {
 .koike-page .cs-text,
 .nissha-page .cs-text,
 .about-page .cs-text,
+.cs-page .cs-text,
 .did-page .cs-text,
 .did-page .bullet-list li {   /* Koike + Digital ID case studies share the same paragraph look */
   line-height: 1.45;
