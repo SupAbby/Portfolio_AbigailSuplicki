@@ -1694,3 +1694,25 @@ ol.bullet-list li::before {
 
 /* Home page: let the VIEW_MORE_PROJECTS title and its button wrap on narrow screens */
 .section-header { flex-wrap: wrap; gap: 15px; }
+
+/* Slightly looser letter spacing on every heading in the bold display font
+   (page titles, section headers, project titles, numbered section titles, stats).
+   Uses em so the extra space scales with each heading's size. */
+.hero-title,
+.intro-brand-title,
+.section-title,
+.project-title,
+.cs-title,
+.metric-value {
+  letter-spacing: 0.02em;
+}
+
+/* 3D Projects page: text + media rows where the media gets about two-thirds of the width.
+   Text-first rows put the text on the left; the others put the media on the left. */
+.koike-video-row.wide-media { grid-template-columns: minmax(0, 2.2fr) minmax(260px, 1fr); }
+.koike-video-row.text-first.wide-media { grid-template-columns: minmax(260px, 1fr) minmax(0, 2.2fr); }
+
+@media (max-width: 900px) {
+  .koike-video-row.wide-media,
+  .koike-video-row.text-first.wide-media { grid-template-columns: 1fr; }
+}
