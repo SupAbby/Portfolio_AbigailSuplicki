@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ABIGAIL SUPLICKI // VIBE_CODED_SNAKE_GAME</title>
+
+  <!-- LINKED CSS SYSTEM -->
+  <link rel="stylesheet" href="css/styles.css?v=6">
+
+</head>
+<body class="cs-page">
+
+  <!-- BACKGROUND CANVAS -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- NAVIGATION -->
+  <nav>
+    <a href="index.html" class="nav-brand" aria-label="Abigail Suplicki, home"><span class="brand-full">ABIGAIL SUPLICKI // UI_UX</span><span class="brand-short" aria-hidden="true">AS</span></a>
+    <div class="nav-links">
+      <a href="projects.html">[ PROJECTS ]</a>
+      <a href="aboutme.html">[ ABOUT ME ]</a>
+      <a href="files/SuplickiAbigail_Resume-Current.pdf" download="SuplickiAbigail_Resume-Current">[ RESUME ]</a>
+      <a href="index.html#contact" class="btn-brutal-primary">LET'S TALK</a>
+    </div>
+  </nav>
+
+  <!-- CASE STUDY CONTAINER -->
+  <main class="case-study-container">
+
+    <!-- BACK BUTTON & HEADER -->
+    <div>
+      <div class="cs-top-actions">
+        <a href="projects.html" class="btn-brutal-secondary back-btn">◄ BACK TO PROJECTS</a>
+      </div>
+      <h1 class="hero-title" style="font-size: clamp(2.5rem, 6vw, 4.5rem); margin-top: 10px;">VIBE CODED SNAKE GAME</h1>
+    </div>
+
+    <!-- PROJECT METADATA BAR -->
+    <section class="meta-grid">
+      <div class="meta-item">
+        <span class="meta-label">// ROLE</span>
+        <span class="meta-value">UI/UX Designer</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">// DURATION</span>
+        <span class="meta-value">4 Weeks</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">// CLIENT</span>
+        <span class="meta-value">School Project</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">// TOOLS</span>
+        <span class="meta-value">Claude Code, Figma, ChatGPT</span>
+      </div>
+    </section>
+
+    <!-- HERO VIDEO -->
+    <div class="img-placeholder-box" style="box-shadow: 8px 8px 0px #000000;">
+      <div class="preview-header" style="display: flex; justify-content: space-between; font-size: 0.65rem; border-bottom: var(--border-thin); padding-bottom: 5px;">
+        <span>SYS_ID: SNAKE_GAME</span>
+        <span>AI CODING</span>
+      </div>
+
+      <video autoplay loop muted playsinline controls preload="metadata" poster="images/SnakeGame.webp" style="width: 100%; height: auto !important; max-height: 600px; display: block; background: #000000;">
+        <source src="Video/SnakeGameSR.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+
+      <div class="preview-header" style="display: flex; justify-content: space-between; font-size: 0.65rem; border-top: var(--border-thin); padding-top: 5px;">
+        <span>STATUS: COMPLETE</span>
+        <span>OCTOBER 2026</span>
+      </div>
+    </div>
+
+    <!-- SECTION 1 -->
+    <section class="cs-section">
+      <h2 class="cs-title">// PROJECT OVERVIEW</h2>
+      <p class="cs-text">This project was an exploration of using AI coding tools to create a simple yet engaging snake game. I utilized Claude Code, Figma, and ChatGPT to guide and refine the development process, learning valuable insights about integrating AI into creative workflows. During this project,
+        I also learned how to implement a multiplayer feature, and build a game conroller using an arduino microcontroller. The final product is a playable snake game that demonstrates the potential of AI-assisted coding in game development. In my classes, we all used our controller and joined each game in a fun creative collison.</p>
+      </p>
+
+      <!-- Three square clips; click one to expand it in the overlay -->
+      <div class="video-grid">
+        <video class="expandable-video" autoplay loop muted playsinline preload="metadata" aria-label="The snake game being played in class">
+          <source src="Video/SnakegameInClass.mp4" type="video/mp4">
+        </video>
+        <video class="expandable-video" autoplay loop muted playsinline preload="metadata" aria-label="The game controller and its design sketch">
+          <source src="Video/Contollerandsketch%20Suplicki.mp4" type="video/mp4">
+        </video>
+        <video class="expandable-video" autoplay loop muted playsinline preload="metadata" aria-label="The game controller in use">
+          <source src="Video/Controllervideo.mp4" type="video/mp4">
+        </video>
+      </div>
+    </section>
+
+    <!-- VIDEO OVERLAY: shows an expanded clip with sound and controls -->
+    <div class="lightbox" id="videoLightbox" role="dialog" aria-modal="true" aria-label="Expanded video">
+      <button type="button" class="lightbox-close" aria-label="Close">✕</button>
+      <video controls playsinline></video>
+    </div>
+
+    <!-- EXPLORE MORE: links to the other case studies (same look as the home page contact section) -->
+    <section class="contact-grid explore-more">
+      <div>
+        <div class="brutalist-badge" style="margin-bottom: 15px;">✦ EXPLORE_MORE</div>
+        <h2 class="hero-title" style="font-size: 3rem; margin-bottom: 15px;">KEEP EXPLORING THE ARCHIVE</h2>
+        <p class="hero-bio" style="margin-bottom: 20px;">
+          See more of my work in UI/UX, branding, print, and packaging design.
+        </p>
+
+        <div class="hero-actions" style="margin-top: 25px; flex-wrap: wrap;">
+          <a href="koikecasestudy.html" class="btn-brutal-primary">KOIKE CASE STUDY ➔</a>
+          <a href="nisshacasestudy.html" class="btn-brutal-primary">NISSHA CASE STUDY ➔</a>
+          <a href="aboutme.html" class="btn-brutal-secondary">ABOUT ME</a>
+        </div>
+      </div>
+
+      <div class="contact-card">
+        <p style="font-weight: 900; color: #FFFFFF; background: #000000; padding: 6px 12px; font-size: 0.8rem;">[ TRANSMISSION_CHANNEL ]</p>
+        <a href="mailto:suplickiabby@gmail.com" class="contact-item">
+          <span>[✉] suplickiabby@gmail.com</span>
+          <span>➔</span>
+        </a>
+        <a href="tel:7162206374" class="contact-item">
+          <span>[✆] (716) 220-6374</span>
+          <span>➔</span>
+        </a>
+        <a href="https://www.linkedin.com/in/abigail-suplicki-6648b1351/" class="contact-item">
+          <span class="contact-label"><span class="channel-icon">[in]</span> LINKEDIN_PROFILE</span>
+          <span>➔</span>
+        </a>
+        <a href="files/SuplickiAbigail_Resume-Current.pdf" download="SuplickiAbigail_Resume-Current" class="contact-item">
+          <span class="contact-label"><span class="channel-icon">[✦]</span> RESUME_DOWNLOAD</span>
+          <span>➔</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- FOOTER TICKER (same as the home page) -->
+    <footer>
+      <div class="ticker">
+        /// ABIGAIL SUPLICKI /// UI/UX DESIGNER /// RIT NEW MEDIA DESIGN CLASS OF 2027 /// AVAILABLE FOR SUMMER 2027 FULL TIME /// EAST CONCORD - ROCHESTER NY /// TRANSMISSION ENDS ///
+      </div>
+    </footer>
+
+  </main>
+
+  <script>
+    /* Click (or Enter/Space on) a clip to expand it in the overlay, playing from the start
+       with sound and controls. Esc, the close button, or the dark backdrop closes it. */
+    (() => {
+      const box = document.getElementById('videoLightbox');
+      const big = box.querySelector('video');
+      let lastFocus = null;
+
+      function open(clip) {
+        lastFocus = document.activeElement;
+        big.src = clip.querySelector('source').src;
+        big.setAttribute('aria-label', clip.getAttribute('aria-label') || 'Expanded video');
+        box.classList.add('open');
+        big.play().catch(() => {});
+        box.querySelector('.lightbox-close').focus();
+      }
+      function close() {
+        big.pause();
+        big.removeAttribute('src');
+        big.load();
+        box.classList.remove('open');
+        if (lastFocus) lastFocus.focus();
+      }
+
+      document.querySelectorAll('.expandable-video').forEach(clip => {
+        clip.tabIndex = 0;
+        clip.setAttribute('role', 'button');
+        clip.addEventListener('click', () => open(clip));
+        clip.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(clip); }
+        });
+      });
+
+      box.querySelector('.lightbox-close').addEventListener('click', close);
+      big.addEventListener('click', (e) => e.stopPropagation());
+      box.addEventListener('click', close);   // click the dark backdrop to close
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && box.classList.contains('open')) close();
+      });
+    })();
+  </script>
+
+  <!-- CANVAS GRID SCRIPT -->
+  <script>
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      drawStaticGrid();
+    }
+
+    function drawStaticGrid() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.lineWidth = 1.2;
+      const step = 45;
+
+      ctx.strokeStyle = 'rgba(0, 0, 0, 0.05)';
+      for (let x = 0; x < canvas.width; x += step) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, canvas.height);
+        ctx.stroke();
+      }
+
+      for (let y = 0; y < canvas.height; y += step) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(canvas.width, y);
+        ctx.stroke();
+      }
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+  </script>
+</body>
+</html>

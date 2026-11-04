@@ -1716,3 +1716,43 @@ ol.bullet-list li::before {
   .koike-video-row.wide-media,
   .koike-video-row.text-first.wide-media { grid-template-columns: 1fr; }
 }
+
+/* Row of square video clips that expand into the overlay when clicked (snake game page) */
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.expandable-video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  background: #000000;
+  cursor: zoom-in;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.expandable-video:hover,
+.expandable-video:focus-visible {
+  transform: translate(2px, -2px);
+  box-shadow: -4px 4px 0px #000000;
+  outline: none;
+}
+
+/* Expanded clip in the overlay: as large as fits on screen */
+.lightbox video {
+  max-width: min(90vw, 900px);
+  max-height: 85vh;
+  width: auto;
+  height: auto;
+  border: 3px solid #FFFFFF;
+  background: #000000;
+  cursor: default;
+}
+
+@media (max-width: 700px) {
+  .video-grid { grid-template-columns: 1fr; }
+}
